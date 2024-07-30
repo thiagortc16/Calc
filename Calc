@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Cédulas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #e0f7fa; /* Fundo azul claro */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #b3e5fc; /* Azul claro */
+            color: #01579b; /* Azul mais escuro */
+        }
+        td {
+            background-color: #e1f5fe; /* Azul muito claro */
+        }
+        input[type="number"] {
+            width: 50px;
+            background-color: #fff3e0; /* Laranja claro */
+            border: 1px solid #ffcc80; /* Laranja claro */
+        }
+        h1 {
+            color: #01579b; /* Azul mais escuro */
+        }
+        h2 {
+            color: #ef6c00; /* Laranja */
+        }
+    </style>
+</head>
+<body>
 
+<h1>Calculadora de Cédulas</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Quantidade</th>
+            <th>Valor (R$)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>200</td>
+            <td><input type="number" id="cedula200" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor200">0</td>
+        </tr>
+        <tr>
+            <td>100</td>
+            <td><input type="number" id="cedula100" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor100">0</td>
+        </tr>
+        <tr>
+            <td>50</td>
+            <td><input type="number" id="cedula50" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor50">0</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td><input type="number" id="cedula20" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor20">0</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td><input type="number" id="cedula10" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor10">0</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><input type="number" id="cedula5" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor5">0</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="number" id="cedula2" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor2">0</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="number" id="cedula1" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor1">0</td>
+        </tr>
+        <tr>
+            <td>0.50</td>
+            <td><input type="number" id="cedula050" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor050">0</td>
+        </tr>
+        <tr>
+            <td>0.25</td>
+            <td><input type="number" id="cedula025" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor025">0</td>
+        </tr>
+        <tr>
+            <td>0.10</td>
+            <td><input type="number" id="cedula010" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor010">0</td>
+        </tr>
+        <tr>
+            <td>0.05</td>
+            <td><input type="number" id="cedula005" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor005">0</td>
+        </tr>
+        <tr>
+            <td>0.01</td>
+            <td><input type="number" id="cedula001" value="0" min="0" oninput="calcularTotal()"></td>
+            <td id="valor001">0</td>
+        </tr>
+        <tr>
+            <td>Dilacerados</td>
+            <td colspan="2"><input type="number" id="dilacerados" value="0" min="0" oninput="calcularTotal()"></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Total: R$ <span id="total">0</span></h2>
+
+<script>
+    function calcularTotal() {
+        let cedulas = [
+            { id: 'cedula200', valor: 200 },
+            { id: 'cedula100', valor: 100 },
+            { id: 'cedula50', valor: 50 },
+            { id: 'cedula20', valor: 20 },
+            { id: 'cedula10', valor: 10 },
+            { id: 'cedula5', valor: 5 },
+            { id: 'cedula2', valor: 2 },
+            { id: 'cedula1', valor: 1 },
+            { id: 'cedula050', valor: 0.50 },
+            { id: 'cedula025', valor: 0.25 },
+            { id: 'cedula010', valor: 0.10 },
+            { id: 'cedula005', valor: 0.05 },
+            { id: 'cedula001', valor: 0.01 }
+        ];
+
+        let total = 0;
+
+        cedulas.forEach(function(cedula) {
+            let quantidade = document.getElementById(cedula.id).value;
+            let valor = quantidade * cedula.valor;
+            document.getElementById('valor' + cedula.id.replace('cedula', '')).innerText = valor.toFixed(2);
+            total += valor;
+        });
+
+        let dilacerados = parseFloat(document.getElementById('dilacerados').value);
+        total += dilacerados;
+
+        document.getElementById('total').innerText = total.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
